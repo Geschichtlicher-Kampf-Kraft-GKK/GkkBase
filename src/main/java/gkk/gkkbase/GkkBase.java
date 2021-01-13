@@ -1,14 +1,16 @@
 package gkk.gkkbase;
 
+import gkk.gkkbase.materials.Items;
+import gkk.gkkbase.utils.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(
         modid = GkkBase.MOD_ID,
@@ -53,29 +55,6 @@ public class GkkBase {
     }
 
     /**
-     * Forge will automatically look up and bind blocks to the fields in this class
-     * based on their registry name.
-     */
-    @GameRegistry.ObjectHolder(MOD_ID)
-    public static class Blocks {
-      /*
-          public static final MySpecialBlock mySpecialBlock = null; // placeholder for special block below
-      */
-    }
-
-    /**
-     * Forge will automatically look up and bind items to the fields in this class
-     * based on their registry name.
-     */
-    @GameRegistry.ObjectHolder(MOD_ID)
-    public static class Items {
-      /*
-          public static final ItemBlock mySpecialBlock = null; // itemblock for the block above
-          public static final MySpecialItem mySpecialItem = null; // placeholder for special item below
-      */
-    }
-
-    /**
      * This is a special class that listens to registry events, to allow creation of mod blocks and items at the proper time.
      */
     @Mod.EventBusSubscriber
@@ -85,10 +64,10 @@ public class GkkBase {
          */
         @SubscribeEvent
         public static void addItems(RegistryEvent.Register<Item> event) {
-           /*
-             event.getRegistry().register(new ItemBlock(Blocks.myBlock).setRegistryName(MOD_ID, "myBlock"));
-             event.getRegistry().register(new MySpecialItem().setRegistryName(MOD_ID, "mySpecialItem"));
-            */
+            Items.init();
+            for (Item value : Items.ITEMS.values()) {
+                event.getRegistry().register(value);
+            }
         }
 
         /**
@@ -100,14 +79,18 @@ public class GkkBase {
              event.getRegistry().register(new MySpecialBlock().setRegistryName(MOD_ID, "mySpecialBlock"));
             */
         }
-    }
-    /* EXAMPLE ITEM AND BLOCK - you probably want these in separate files
-    public static class MySpecialItem extends Item {
 
+        @SubscribeEvent
+        public static void onModelRegister(ModelRegistryEvent event) {
+//            OBJLoader.INSTANCE.addDomain(MOD_ID); //registry obj model
+
+            for (Item value : Items.ITEMS.values()) {
+                if (value instanceof IHasModel) {
+                    ((IHasModel) value).registerModels();
+                }
+            }
+
+        }
     }
 
-    public static class MySpecialBlock extends Block {
-
-    }
-    */
 }
