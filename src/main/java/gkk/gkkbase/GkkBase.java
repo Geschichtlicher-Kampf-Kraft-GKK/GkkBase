@@ -3,7 +3,9 @@ package gkk.gkkbase;
 import gkk.gkkbase.materials.Items;
 import gkk.gkkbase.utils.IHasModel;
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,6 +24,12 @@ public class GkkBase {
     public static final String MOD_ID = "gkk_base";
     public static final String MOD_NAME = "GkkBase";
     public static final String VERSION = "1.0-SNAPSHOT";
+    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID) {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(net.minecraft.init.Items.BEEF);
+        }
+    };
 
     /**
      * This is the instance of your mod as created by Forge. It will never be null.

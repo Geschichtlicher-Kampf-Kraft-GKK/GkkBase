@@ -17,7 +17,7 @@ public class ItemBase extends Item implements IHasModel {
 
     public ItemBase(boolean registryInBase, String registryName, String itemName, boolean subType, String modId, String... itemNameSuffix) {
         MODID = modId;
-        setRegistryName(registryName);
+        setRegistryName(modId, registryName);
         setTranslationKey(itemName);
         setHasSubtypes(subType);
         subtypeList.addAll(Arrays.asList(itemNameSuffix));

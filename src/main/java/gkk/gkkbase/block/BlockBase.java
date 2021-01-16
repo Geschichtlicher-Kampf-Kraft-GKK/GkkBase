@@ -4,14 +4,16 @@ import gkk.gkkbase.utils.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
-public class BlockBase extends Block implements IHasModel {
+public abstract class BlockBase extends Block implements IHasModel {
 
     public BlockBase(Material materialIn,String blockName,String registryName,String modId,float hardness,float resistance) {
         super(materialIn);
+        setRegistryName(modId,registryName);
+        setTranslationKey(blockName);
+        setHardness(hardness);
+        setResistance(resistance);
     }
 
     @Override
-    public void registerModels() {
-
-    }
+    public abstract void registerModels();
 }
