@@ -1,5 +1,6 @@
 package gkk.gkkbase;
 
+import gkk.gkkbase.materials.Blocks;
 import gkk.gkkbase.materials.Items;
 import gkk.gkkbase.utils.IHasModel;
 import net.minecraft.block.Block;
@@ -83,9 +84,10 @@ public class GkkBase {
          */
         @SubscribeEvent
         public static void addBlocks(RegistryEvent.Register<Block> event) {
-           /*
-             event.getRegistry().register(new MySpecialBlock().setRegistryName(MOD_ID, "mySpecialBlock"));
-            */
+            Blocks.init();
+            for (Block value : Blocks.BLOCKS.values()) {
+                event.getRegistry().register(value);
+            }
         }
 
         @SubscribeEvent
@@ -95,6 +97,12 @@ public class GkkBase {
             for (Item value : Items.ITEMS.values()) {
                 if (value instanceof IHasModel) {
                     ((IHasModel) value).registerModels();
+                }
+            }
+
+            for (Block block : Blocks.BLOCKS.values()) {
+                if (block instanceof IHasModel) {
+                    ((IHasModel) block).registerModels();
                 }
             }
 

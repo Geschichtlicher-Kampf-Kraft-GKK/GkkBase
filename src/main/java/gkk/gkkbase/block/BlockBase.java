@@ -1,5 +1,6 @@
 package gkk.gkkbase.block;
 
+import gkk.gkkbase.GkkBase;
 import gkk.gkkbase.utils.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -12,6 +13,7 @@ public abstract class BlockBase extends Block implements IHasModel {
         setTranslationKey(blockName);
         setHardness(hardness);
         setResistance(resistance);
+        setCreativeTab(GkkBase.CREATIVE_TAB);
     }
 
     @Override

@@ -7,11 +7,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 
 import javax.annotation.Nullable;
 
@@ -26,7 +29,7 @@ public class MaterialBlock extends BlockBase {
         this.resistanceMultiplier = resistanceMultiplier;
         Blocks.BLOCKS.put(name, this);
         Items.ITEMS.put(name, new ItemBlock(this).setRegistryName(this.getRegistryName()));
-        this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL,0));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, 0));
     }
 
     @Override
@@ -56,6 +59,9 @@ public class MaterialBlock extends BlockBase {
 
     @Override
     public void registerModels() {
-
+        for (Integer allowedValue : this.LEVEL.getAllowedValues()) {
+            Item itemFromBlock = Item.getItemFromBlock(this);
+            ModelLoader.setCustomModelResourceLocation(itemFromBlock, allowedValue, new ModelResourceLocation(itemFromBlock.getRegistryName(), "inventory_" + allowedValue));
+        }
     }
 }

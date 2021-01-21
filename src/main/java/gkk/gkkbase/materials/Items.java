@@ -27,7 +27,8 @@ public class Items {
         for (String s : prefix) {
             String name = s + materialName;
             ItemMaterialBase itemMaterialBase = new ItemMaterialBase(name, suffix);
-            OreDictionary.registerOre(name, itemMaterialBase);
+//            OreDictionary.registerOre(name, itemMaterialBase);
+            //todo fix it
         }
     }
 
