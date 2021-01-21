@@ -14,6 +14,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.Map;
 
 @Mod(
         modid = GkkBase.MOD_ID,
@@ -87,6 +90,13 @@ public class GkkBase {
             Blocks.init();
             for (Block value : Blocks.BLOCKS.values()) {
                 event.getRegistry().register(value);
+            }
+        }
+
+        @SubscribeEvent
+        public static void addOreDict(OreDictionary.OreRegisterEvent event){
+            for (Map.Entry<String, Item> stringItemEntry : Items.ITEMS.entrySet()) {
+                OreDictionary.registerOre(stringItemEntry.getKey(),stringItemEntry.getValue());
             }
         }
 
