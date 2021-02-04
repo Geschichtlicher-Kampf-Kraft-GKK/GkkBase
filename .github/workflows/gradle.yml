@@ -24,4 +24,4 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: clone_and_push
-        run: ./clone_and_push.sh
+        run: sudo ./clone_and_push.sh
