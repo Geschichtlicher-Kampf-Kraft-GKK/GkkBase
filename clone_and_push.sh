@@ -16,3 +16,4 @@ for repo_name in repo_names
     echo finished_$repo_name
   done
   rm -rf build/libs/
+  
