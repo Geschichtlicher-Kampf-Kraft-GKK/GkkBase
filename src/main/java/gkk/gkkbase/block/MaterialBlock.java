@@ -32,6 +32,15 @@ public class MaterialBlock extends BlockBase {
         this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, 0));
     }
 
+    public MaterialBlock(String name, String modId, float hardnessBase, float resistanceBase, float hardnessMultiplier, float resistanceMultiplier) {
+        super(Material.IRON, name, name, modId, hardnessBase, resistanceBase);
+        this.hardnessMultiplier = hardnessMultiplier;
+        this.resistanceMultiplier = resistanceMultiplier;
+        Blocks.BLOCKS.put(name, this);
+        Items.ITEMS.put(name, new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, 0));
+    }
+
     @Override
     public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
         return this.blockHardness + blockState.getValue(LEVEL) * hardnessMultiplier;
