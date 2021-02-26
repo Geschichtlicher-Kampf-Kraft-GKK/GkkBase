@@ -10,6 +10,11 @@ import java.util.HashMap;
 
 public class Blocks {
     public static final HashMap<String, Block> BLOCKS = new HashMap<>();
+    /**
+     * this map is used to storage Constructor of different BlockTypes
+     * need to initialize before use
+     * oh... I thought it's useless...
+     */
     public static final HashMap<String, BlockConstructor> BLOCK_CONSTRUCTOR_HASH_MAP = new HashMap<>();
 
     public static void init() {
