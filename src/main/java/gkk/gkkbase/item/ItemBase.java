@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -44,7 +45,7 @@ public class ItemBase extends Item implements IHasModel {
         if (this.getHasSubtypes()) {
             int size = subtypeList.size();
             for (int i = 0; i < size; i++) {
-                ModelLoader.setCustomModelResourceLocation(this, i, new ModelResourceLocation(new ResourceLocation(this.MODID, this.getRegistryName().getPath() + "/" + subtypeList.get(i)), "inventory"));
+                ModelLoader.setCustomModelResourceLocation(this, i, new ModelResourceLocation(new ResourceLocation(this.MODID, this.getRegistryName().getPath() + File.separator + subtypeList.get(i)), "inventory"));
             }
         } else {
             ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(new ResourceLocation(this.MODID, this.getRegistryName().getPath()), "inventory"));

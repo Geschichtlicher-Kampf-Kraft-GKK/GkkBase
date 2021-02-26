@@ -15,7 +15,7 @@ public class ItemMaterialBase extends ItemBase {
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
         if (this.isInCreativeTab(tab)) {
             for (int i = 0; i < getSubtypeList().size(); i++) {
-                items.add(new ItemStack(this, i));
+                items.add(new ItemStack(this, 1, i));
             }
         }
     }

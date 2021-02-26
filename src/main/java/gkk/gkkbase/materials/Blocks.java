@@ -18,7 +18,7 @@ public class Blocks {
     public static final HashMap<String, BlockConstructor> BLOCK_CONSTRUCTOR_HASH_MAP = new HashMap<>();
 
     public static void init() {
-        defineMaterialBlocks("Steel", 16, 16, 1.5f, 1.5f, "stair,block,ore".split(","));
+
     }
 
     @Deprecated

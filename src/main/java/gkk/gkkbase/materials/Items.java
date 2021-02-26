@@ -5,16 +5,15 @@ import gkk.gkkbase.item.ItemMaterialBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 
 public class Items {
     public static final HashMap<String, Item> ITEMS = new HashMap<>();
+    private static final List<String> RESOURCE_TYPES = Arrays.asList("ingot,stick,powder,plate,string,bar,screw".split(","));
+    //we need to consider the essential about different level of material;
 
     public static void init() {
-        defineMaterials("Steel", Arrays.asList("ingot,stick,powder,plate,string,bar".split(",")), "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16".split(","));
+        defineResources("Silver,Copper,Aluminum,Brass,Bronze,Lead,Zinc,Antimony,Chrome,Iridium,Magnesium,Platinum,Steel,Tin,Titanium,Tungsten,Uranium,Stainless_steel,Invar".split(","));
     }
 
 
@@ -30,6 +29,12 @@ public class Items {
             ItemMaterialBase itemMaterialBase = new ItemMaterialBase(name, suffix);
 //            OreDictionary.registerOre(name, itemMaterialBase);
             //todo fix it
+        }
+    }
+
+    public static void defineResources(String... materialNames) {
+        for (String materialName : materialNames) {
+            defineMaterials(materialName, RESOURCE_TYPES, "0");
         }
     }
 
