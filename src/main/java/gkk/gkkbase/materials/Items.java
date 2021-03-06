@@ -38,7 +38,4 @@ public class Items {
         }
     }
 
-    public static void defineMaterialItems(String materialName, String modId, String... suffix) {
-
-    }
 }
